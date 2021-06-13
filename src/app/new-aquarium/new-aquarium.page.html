@@ -1,0 +1,71 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>newAquarium</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+        <div>
+            <ion-row>
+                <ion-item>
+                    <ion-label position="stacked">Name</ion-label>
+                    <ion-input [(ngModel)]="tankName" type="text" placeholder="Tank-Name"></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label position="stacked">Length</ion-label>
+                    <ion-input [(ngModel)]="length" type="number" placeholder="Length in cm"></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label position="stacked">Width</ion-label>
+                    <ion-input [(ngModel)]="width" type="number" placeholder="Width in cm"></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label position="stacked">Height</ion-label>
+                    <ion-input [(ngModel)]="height" type="number" placeholder="Height in cm"></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label position="stacked">Manufacturer</ion-label>
+                    <ion-input [(ngModel)]="manufacturer" type="text" placeholder="Manufacturer"></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label position="stacked">Lamp</ion-label>
+                    <ion-input [(ngModel)]="lamp" type="text" placeholder="Lamp"></ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label position="stacked">Lighting Duration</ion-label>
+                    <ion-input [(ngModel)]="lightingDuration" type="time" placeholder="Lighting Duration in hh:mm">
+                    </ion-input>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label position="stacked">CO2-Injection</ion-label>
+                    <ion-toggle [(ngModel)]="co2Injection"></ion-toggle>
+                </ion-item>
+            </ion-row>
+            <ion-row>
+                <ion-item>
+                    <ion-label position="stacked">Air Stone</ion-label>
+                    <ion-toggle [(ngModel)]="airStone"></ion-toggle>
+                </ion-item>
+            </ion-row>
+
+            <ion-button (click)="onCreate()" class="ion-padding-vertical">Save</ion-button>
+        </div>
+    </ion-grid>
+
+</ion-content>

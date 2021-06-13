@@ -11,6 +11,14 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
+  {
+    path: 'landing',
+    loadChildren: () => import('./landing/landing.module').then( m => m.LandingPageModule)
+  },
+  {
+    path: 'new-aquarium',
+    loadChildren: () => import('./new-aquarium/new-aquarium.module').then( m => m.NewAquariumPageModule)
+  },
 ];
 
 @NgModule({
