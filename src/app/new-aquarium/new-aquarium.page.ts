@@ -1,6 +1,6 @@
 import { Time } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { AquariumsService } from '../aquariums.service';
+import { AquariumsService } from '../services/aquariums.service';
 
 @Component({
     selector: 'app-new-aquarium',
@@ -24,17 +24,23 @@ export class NewAquariumPage implements OnInit {
     }
 
     onCreate() {
-        this.aquariumsService.addAquarium({
-                tankName: this.tankName,
-                length: this.length,
-                width: this.width,
-                height: this.height,
-                manufacturer: this.manufacturer,
-                lamp: this.lamp,
-                lightingDuration: this.lightingDuration,
-                co2Injection: this.co2Injection,
-                airStone: this.airStone,
-            });
+        this.aquariumsService.addAquariumToStorage({
+            tankName: this.tankName,
+            length: this.length,
+            width: this.width,
+            height: this.height,
+            manufacturer: this.manufacturer,
+            lamp: this.lamp,
+            lightingDuration: this.lightingDuration,
+            co2Injection: this.co2Injection,
+            airStone: this.airStone,
+        });
+    }
+
+    // TODO: kann gelöscht werden inklusive Show-Button im HTML
+    public async onShow(): Promise<void> {
+        const actualSorage$ = await this.aquariumsService.getAquariumsFromStorage();
+        console.log(actualSorage$);
     }
 
 }
