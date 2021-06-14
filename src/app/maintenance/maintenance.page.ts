@@ -22,14 +22,14 @@ export class MaintenancePage implements OnInit {
 
     public onSave(): void {
         this.tanksList.forEach(tank => {
-            if(tank.isMaintenanced){
+            if (tank.isMaintenanced) {
                 this.saveMaintenaceToStorage(tank.tankName);
             }
         });
     }
 
     private async generateTankHTMLSelects(): Promise<void> {
-        await this.aquariumsService.getTankNamesFromStorage()
+        await this.aquariumsService.getAquariumNamesFromStorage()
             .then((tankNamesList) => {
                 tankNamesList.forEach(tank => {
                     this.tanksList.push({
@@ -40,8 +40,16 @@ export class MaintenancePage implements OnInit {
             });
     }
 
-    private saveMaintenaceToStorage(tankName: string){
-
+    private saveMaintenaceToStorage(name: string) {
+        const data = {
+            tankName: name,
+            maintenance: {
+                date: this.date,
+                waterChange: this.waterChange,
+                notes: this.notes,
+            }
+        };
+        this.aquariumsService.addMaintenanceForAquariumToStorage(data);
     }
 
 

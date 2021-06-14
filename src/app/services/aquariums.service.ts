@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Aquarium } from '../aquarium/aquarium';
 import { IAquarium } from '../aquarium/aquariumInterface';
 import { Storage } from '@ionic/storage';
+import { IMaintenance } from '../maintenance/maintenanceInterface';
 
 const AQUARIUMS_KEY = 'aquariums';
 
@@ -40,7 +41,21 @@ export class AquariumsService {
         }
     }
 
-    public async getTankNamesFromStorage(): Promise<string[]> {
+    public async addMaintenanceForAquariumToStorage(data: IMaintenance): Promise<void> {
+        try {
+            const aquariumList = await this.getAquariumsFromStorage();
+            aquariumList.forEach(tank => {
+                if (tank.tankName === data.tankName) {
+                    tank.maintenance.push(data.maintenance);
+                }
+            });
+            this.storage.set(AQUARIUMS_KEY, aquariumList);
+        } catch (error) {
+            console.log('Storage-Get-Error: ', error);
+        }
+    }
+
+    public async getAquariumNamesFromStorage(): Promise<string[]> {
         try {
             const aquariums = await this.getAquariumsFromStorage();
             const tankNamesList: string[] = [];

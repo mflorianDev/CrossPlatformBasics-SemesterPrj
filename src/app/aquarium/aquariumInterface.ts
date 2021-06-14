@@ -1,13 +1,13 @@
 import { Time } from '@angular/common';
 
-export interface IAquarium{
-    airStone: boolean;
-    co2Injection: boolean;
-    height: number;
-    lamp: string;
-    length: number;
-    lightingDuration: Time;
-    manufacturer: string;
+export interface IAquarium {
     tankName: string;
+    length: number;
     width: number;
+    height: number;
+    manufacturer: string;
+    lamp: string;
+    lightingDuration: Time;
+    co2Injection: boolean;
+    airStone: boolean;
 }

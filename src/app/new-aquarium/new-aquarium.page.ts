@@ -1,4 +1,5 @@
 import { Time } from '@angular/common';
+import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AquariumsService } from '../services/aquariums.service';
 
@@ -8,33 +9,38 @@ import { AquariumsService } from '../services/aquariums.service';
     styleUrls: ['./new-aquarium.page.scss'],
 })
 export class NewAquariumPage implements OnInit {
-    tankName: string;
+    tankName = '';
     length: number;
     width: number;
     height: number;
-    manufacturer: string;
-    lamp: string;
+    manufacturer = '';
+    lamp = '';
     lightingDuration: Time;
-    co2Injection: boolean;
-    airStone: boolean;
+    co2Injection = false;
+    airStone = false;
 
     constructor(private aquariumsService: AquariumsService) { }
 
     ngOnInit() {
     }
 
-    onCreate() {
-        this.aquariumsService.addAquariumToStorage({
-            tankName: this.tankName,
-            length: this.length,
-            width: this.width,
-            height: this.height,
-            manufacturer: this.manufacturer,
-            lamp: this.lamp,
-            lightingDuration: this.lightingDuration,
-            co2Injection: this.co2Injection,
-            airStone: this.airStone,
-        });
+    public onCreate() {
+        if (this.tankName !== '') {
+            this.aquariumsService.addAquariumToStorage({
+                tankName: this.tankName,
+                length: this.length,
+                width: this.width,
+                height: this.height,
+                manufacturer: this.manufacturer,
+                lamp: this.lamp,
+                lightingDuration: this.lightingDuration,
+                co2Injection: this.co2Injection,
+                airStone: this.airStone,
+            });
+        } else {
+            //TODO: Ion-Alert-Komponente einbauen!
+            alert('Name must be set!');
+        }
     }
 
     // TODO: kann gelöscht werden inklusive Show-Button im HTML

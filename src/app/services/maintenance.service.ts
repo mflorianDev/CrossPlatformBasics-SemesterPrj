@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { AquariumsService } from './aquariums.service';
+import { IMaintenance } from '../maintenance/maintenanceInterface';
 
 const MAINTENANCE_KEY = 'maintenance';
 
@@ -7,23 +9,19 @@ const MAINTENANCE_KEY = 'maintenance';
 })
 export class MaintenanceService {
 
-    constructor(private storage: Storage) { }
+    constructor(private aquariumService: AquariumsService) { }
 
-    //TODO: Funktion muss erst angepasst werden!
-    public async addMaintenance(data: any): Promise<void> {
-        const newAquarium = new Aquarium(data);
+    public async addMaintenance(data: IMaintenance): Promise<void> {
         try {
-            await this.storage.get(AQUARIUMS_KEY)
-                .then((aquariums: Aquarium[]) => {
-                    if (aquariums) {
-                        aquariums.push(newAquarium);
-                        this.storage.set(AQUARIUMS_KEY, aquariums);
-                    } else {
-                        this.storage.set(AQUARIUMS_KEY, [newAquarium]);
-                    }
-                });
+            const aquariumList = await this.aquariumService.getAquariumsFromStorage();
+            aquariumList.forEach(tank => {
+                if (tank.tankName === data.tankName){
+                    tank.maintenance.push(data.maintenance);
+                }
+            });
+            console.log(aquariumList);
         } catch (error) {
-            console.log('Storage-Set-Error: ', error);
+            console.log('AddMaintenance-Error: ', error);
         }
     }
 
