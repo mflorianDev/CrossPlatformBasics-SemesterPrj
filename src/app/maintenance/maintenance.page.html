@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>maintenance</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-row>
+            <ion-item *ngFor="let tank of tanksList">
+                <ion-label position="stacked">{{tank.tankName}}</ion-label>
+                <ion-toggle [(ngModel)]="tank.isMaintenanced"></ion-toggle>
+            </ion-item>
+            <ion-item>
+                <ion-label position="stacked">All Tanks</ion-label>
+                <ion-toggle [(ngModel)]="allTanks"></ion-toggle>
+            </ion-item>
+        </ion-row>
+        <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime [(ngModel)]="date" displayFormat="DD MM YYYY" placeholder="Select Date"></ion-datetime>
+        </ion-item>
+        <ion-item>
+            <ion-label>Water Change</ion-label>
+            <ion-select placeholder="0%" [(ngModel)]="waterChange">
+                <ion-select-option value="0">0%</ion-select-option>
+                <ion-select-option value="10">10%</ion-select-option>
+                <ion-select-option value="20">20%</ion-select-option>
+                <ion-select-option value="30">30%</ion-select-option>
+                <ion-select-option value="40">40%</ion-select-option>
+                <ion-select-option value="50">50%</ion-select-option>
+                <ion-select-option value="60">60%</ion-select-option>
+                <ion-select-option value="70">70%</ion-select-option>
+                <ion-select-option value="80">80%</ion-select-option>
+                <ion-select-option value="90">90%</ion-select-option>
+                <ion-select-option value="100">100%</ion-select-option>
+            </ion-select>
+        </ion-item>
+        <ion-item>
+            <ion-icon name="create-outline" slot="end" class="ion-align-self-center"></ion-icon>
+            <ion-label position="floating">Notes</ion-label>
+            <ion-textarea [(ngModel)]="notes" placeholder="Enter Your Notes Here"></ion-textarea>
+        </ion-item>
+    </ion-list>
+
+    <ion-button (click)="onSave()" class="ion-padding-vertical">Save</ion-button>
+
+</ion-content>

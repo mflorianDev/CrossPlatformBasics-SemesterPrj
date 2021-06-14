@@ -8,7 +8,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'landing',
     pathMatch: 'full'
   },
   {
@@ -18,6 +18,14 @@ const routes: Routes = [
   {
     path: 'new-aquarium',
     loadChildren: () => import('./new-aquarium/new-aquarium.module').then( m => m.NewAquariumPageModule)
+  },
+  {
+    path: 'maintenance',
+    loadChildren: () => import('./maintenance/maintenance.module').then( m => m.MaintenancePageModule)
+  },
+  {
+    path: '**',
+    loadChildren: () => import('./page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
   },
 ];
 

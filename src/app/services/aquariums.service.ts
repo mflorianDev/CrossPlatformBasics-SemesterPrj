@@ -40,6 +40,19 @@ export class AquariumsService {
         }
     }
 
+    public async getTankNamesFromStorage(): Promise<string[]> {
+        try {
+            const aquariums = await this.getAquariumsFromStorage();
+            const tankNamesList: string[] = [];
+            aquariums.forEach(tank => {
+                tankNamesList.push(tank.tankName);
+            });
+            return tankNamesList;
+        } catch (error) {
+            console.log('Storage-GetTankNames-Error: ', error);
+        }
+    }
+
     public async clearStorage(): Promise<void> {
         try {
             await this.storage.clear();
