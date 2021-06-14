@@ -1,3 +1,7 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+
+    <ion-router-outlet></ion-router-outlet>
+    <!-- app-navigation-element has to be underneath router-outlet otherwise routing is blocked -->
+    <app-navigation></app-navigation>
+
 </ion-app>
