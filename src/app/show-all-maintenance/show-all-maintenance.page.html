@@ -1,0 +1,28 @@
+<!-- TODO: Change or delete header! -->
+<ion-header>
+    <ion-toolbar>
+        <ion-title>showAllMaintenance</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list *ngFor="let tank of tanksList">
+        <ion-list-header>
+            {{tank.tankName}}
+        </ion-list-header>
+
+        <ion-item *ngFor="let entry of tank.maintenance">
+            <ion-avatar slot="start">
+                <ion-icon name="information-circle-outline"></ion-icon>
+            </ion-avatar>
+            <ion-label>
+                <h2>{{entry.date}}</h2>
+                <h3>{{entry.waterChange}}</h3>
+                <p>{{entry.notes}}</p>
+            </ion-label>
+        </ion-item>
+
+    </ion-list>
+
+</ion-content>

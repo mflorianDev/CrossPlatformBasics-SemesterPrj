@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./maintenance/maintenance.module').then( m => m.MaintenancePageModule)
   },
   {
+    path: 'show-all-maintenance',
+    loadChildren: () => import('./show-all-maintenance/show-all-maintenance.module').then( m => m.ShowAllMaintenancePageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
   },

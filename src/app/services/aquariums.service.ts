@@ -49,6 +49,7 @@ export class AquariumsService {
                     tank.maintenance.push(data.maintenance);
                 }
             });
+            console.log(aquariumList);
             this.storage.set(AQUARIUMS_KEY, aquariumList);
         } catch (error) {
             console.log('Storage-Get-Error: ', error);
