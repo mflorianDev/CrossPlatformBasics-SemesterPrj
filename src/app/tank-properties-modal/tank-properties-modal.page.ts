@@ -12,7 +12,6 @@ import { AquariumsService } from '../services/aquariums.service';
 export class TankPropertiesModalPage implements OnInit {
     @Input() selectedTankObj: Aquarium;
     props: IAquariumProperties;
-    lamp: string;
 
     isDisabledTankName = true;
     isDisabledLength = true;
@@ -29,11 +28,9 @@ export class TankPropertiesModalPage implements OnInit {
 
     ngOnInit() {
         this.props = this.selectedTankObj.properties;
-        this.lamp = this.selectedTankObj.properties.lamp;
     }
 
     public onUpdate() {
-        console.log('new lamp-value: ', this.lamp);
         console.log('New Props: ', this.props);
         if (this.selectedTankObj.tankName !== '') {
             this.selectedTankObj.properties = this.props;

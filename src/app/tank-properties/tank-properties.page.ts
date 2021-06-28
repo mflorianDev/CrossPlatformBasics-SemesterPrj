@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Aquarium } from '../aquarium/aquarium';
 import { AquariumsService } from '../services/aquariums.service';
@@ -13,7 +14,7 @@ export class TankPropertiesPage implements OnInit {
     tanksList: Aquarium[];
     selectedTankObj: Aquarium;
 
-    constructor(private aquariumsService: AquariumsService, public modalController: ModalController) {
+    constructor(private aquariumsService: AquariumsService, public modalController: ModalController, private router: Router) {
     }
 
     ngOnInit() {
@@ -32,6 +33,11 @@ export class TankPropertiesPage implements OnInit {
             componentProps: {selectedTankObj},
         });
         return await modal.present();
+    }
+
+    public navigateToPropChanges(selectedTankObj: Aquarium){
+        const selectedTankJSON = JSON.stringify(selectedTankObj);
+        this.router.navigate(['/tank-properties-changes', {tank: selectedTankJSON}]);
     }
 
 

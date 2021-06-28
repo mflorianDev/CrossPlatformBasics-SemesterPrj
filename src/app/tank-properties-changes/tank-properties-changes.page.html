@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>tankPropertiesChanges</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-item>
+                <ion-label position="stacked" required>Name</ion-label>
+                <ion-input [(ngModel)]="selectedTankObj.tankName" type="text" disabled="{{isDisabledTankName}}" placeholder="{{selectedTankObj.tankName ? selectedTankObj.tankName : 'Tank-Name'}}"></ion-input>
+                <ion-button (click)="isDisabledTankName = false" slot="end" style="--background: transparent;">
+                    <ion-icon name="pencil-outline" slot="end" color="dark"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <ion-label position="stacked">Length</ion-label>
+                <ion-input [(ngModel)]="props.length" type="number" disabled="{{isDisabledLength}}" placeholder="{{props.length ? props.length : 'Length in cm'}}"></ion-input>
+                <ion-button (click)="isDisabledLength = false" slot="end" style="--background: transparent;">
+                    <ion-icon name="pencil-outline" slot="end" color="dark"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <ion-label position="stacked">Width</ion-label>
+                <ion-input [(ngModel)]="props.width" type="number" disabled="{{isDisabledWidth}}" placeholder="{{props.width ? props.width : 'Width in cm'}}"></ion-input>
+                <ion-button (click)="isDisabledWidth = false" slot="end" style="--background: transparent;">
+                    <ion-icon name="pencil-outline" slot="end" color="dark"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <ion-label position="stacked">Height</ion-label>
+                <ion-input [(ngModel)]="props.height" type="number" disabled="{{isDisabledHeight}}" placeholder="{{props.height ? props.height : 'Height in cm'}}"></ion-input>
+                <ion-button (click)="isDisabledHeight = false" slot="end" style="--background: transparent;">
+                    <ion-icon name="pencil-outline" slot="end" color="dark"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <ion-label position="stacked">Manufacturer</ion-label>
+                <ion-input [(ngModel)]="props.manufacturer" type="text" placeholder="Manufacturer" disabled="{{isDisabledManufacturer}}" placeholder="{{props.manufacturer ? props.manufacturer : 'Manufacturer'}}"></ion-input>
+                <ion-button (click)="isDisabledManufacturer = false" slot="end" style="--background: transparent;">
+                    <ion-icon name="pencil-outline" slot="end" color="dark"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <ion-label position="stacked">Lamp</ion-label>
+                <ion-input [(ngModel)]="props.lamp" type="text" disabled="{{isDisabledLamp}}" placeholder="{{props.lamp ? props.lamp : 'Lamp'}}"></ion-input>
+                <ion-button (click)="isDisabledLamp = false" slot="end" style="--background: transparent;">
+                    <ion-icon name="pencil-outline" slot="end" color="dark"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <ion-label position="stacked">Lighting Duration</ion-label>
+                <ion-input [(ngModel)]="props.lightingDuration" type="time" disabled="{{isDisabledLightingDuration}}" value="{{props.lightingDuration ? props.lightingDuration : 'Lighting Duration in hh:mm'}}"></ion-input>
+                <ion-button (click)="isDisabledLightingDuration = false" slot="end" style="--background: transparent;">
+                    <ion-icon name="pencil-outline" slot="end" color="dark"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <ion-label position="stacked">CO2-Injection</ion-label>
+                <ion-toggle [(ngModel)]="props.co2Injection" disabled="{{isDisabledCo2Injection}}" checked="{{props.co2Injection}}"></ion-toggle>
+                <ion-button (click)="isDisabledCo2Injection = false" slot="end" style="--background: transparent;">
+                    <ion-icon name="pencil-outline" slot="end" color="dark"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-row>
+        <ion-row>
+            <ion-item>
+                <ion-label position="stacked">Air Stone</ion-label>
+                <ion-toggle [(ngModel)]="props.airStone" disabled="{{isDisabledAirStone}}" checked="{{props.airStone}}"></ion-toggle>
+                <ion-button (click)="isDisabledAirStone = false" slot="end" style="--background: transparent;">
+                    <ion-icon name="pencil-outline" slot="end" color="dark"></ion-icon>
+                </ion-button>
+            </ion-item>
+        </ion-row>
+
+        <ion-button (click)="onUpdate()" class="ion-padding-vertical">Save Changes</ion-button>
+        <ion-button (click)="dismiss()" class="ion-padding-vertical" color="danger">Dismiss</ion-button>
+    </ion-grid>
+
+</ion-content>
