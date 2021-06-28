@@ -13,8 +13,8 @@ export class NewAquariumPage implements OnInit {
     length: number;
     width: number;
     height: number;
-    manufacturer = '';
-    lamp = '';
+    manufacturer: string;
+    lamp: string;
     lightingDuration: Time;
     co2Injection = false;
     airStone = false;
@@ -37,16 +37,24 @@ export class NewAquariumPage implements OnInit {
                 co2Injection: this.co2Injection,
                 airStone: this.airStone,
             });
+            //TODO: toast im Service oder hier?
+            this.resetInputFields();
         } else {
             //TODO: Ion-Alert-Komponente einbauen!
             alert('Name must be set!');
         }
     }
 
-    // TODO: kann gelöscht werden inklusive Show-Button im HTML
-    public async onShow(): Promise<void> {
-        const actualSorage$ = await this.aquariumsService.getAquariumsFromStorage();
-        console.log(actualSorage$);
+    private resetInputFields() {
+        this.tankName = '';
+        this.length = undefined;
+        this.width = undefined;
+        this.height = undefined;
+        this.manufacturer = undefined;
+        this.lamp = undefined;
+        this.lightingDuration = undefined;
+        this.co2Injection = false;
+        this.airStone = false;
     }
 
 }

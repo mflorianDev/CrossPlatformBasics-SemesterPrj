@@ -8,9 +8,16 @@ import { AquariumsService } from '../services/aquariums.service';
 })
 export class MaintenancePage implements OnInit {
     tanksList: any[] = [];
-    allTanks = false;
     date: string = new Date().toISOString();
-    waterChange = 0;
+    waterChange: number;
+    fertilizerNPKml: number;
+    fertilizerNPKdrops: number;
+    fertilizerFEml: number;
+    fertilizerFEdrops: number;
+    liquidHumin: boolean;
+    mironekuton: boolean;
+    bacterAE: boolean;
+    niteOut2: boolean;
     notes: string;
 
     constructor(private aquariumsService: AquariumsService) {
@@ -26,6 +33,8 @@ export class MaintenancePage implements OnInit {
                 this.saveMaintenaceToStorage(tank.tankName);
             }
         });
+        this.resetInputFields();
+        //window.location.reload();
     }
 
     private async generateTankHTMLSelects(): Promise<void> {
@@ -43,13 +52,41 @@ export class MaintenancePage implements OnInit {
     private saveMaintenaceToStorage(name: string) {
         const data = {
             tankName: name,
-            maintenance: {
-                date: this.date,
-                waterChange: this.waterChange,
-                notes: this.notes,
-            }
+            maintenance: this.checkInputValues()
         };
         this.aquariumsService.addMaintenanceForAquariumToStorage(data);
+    }
+
+    private checkInputValues() {
+        const maintenance = {};
+        Object.assign(maintenance, {date: this.date});
+        if (this.waterChange !== undefined) {Object.assign(maintenance, {waterChange: this.waterChange});}
+        if (this.fertilizerNPKml !== undefined) {Object.assign(maintenance, {fertilizerNPKml: this.fertilizerNPKml});}
+        if (this.fertilizerNPKdrops !== undefined) {Object.assign(maintenance, {fertilizerNPKdrops: this.fertilizerNPKdrops});}
+        if (this.fertilizerFEml !== undefined) {Object.assign(maintenance, {fertilizerFEml: this.fertilizerFEml});}
+        if (this.fertilizerFEdrops !== undefined) {Object.assign(maintenance, {fertilizerFEdrops: this.fertilizerFEdrops});}
+        if (this.liquidHumin) {Object.assign(maintenance, {liquidHumin: this.liquidHumin});}
+        if (this.mironekuton) {Object.assign(maintenance, {mironekuton: this.mironekuton});}
+        if (this.bacterAE) {Object.assign(maintenance, {bacterAE: this.bacterAE});}
+        if (this.niteOut2) {Object.assign(maintenance, {niteOut2: this.niteOut2});}
+        if (this.notes !== undefined) {Object.assign(maintenance, {notes: this.notes});}
+        return maintenance;
+    }
+
+    private resetInputFields(){
+        this.tanksList.forEach(tank => {
+            tank.isMaintenanced = false;
+        });
+        this.waterChange = undefined;
+        this.fertilizerNPKml = undefined;
+        this.fertilizerNPKdrops = undefined;
+        this.fertilizerFEml = undefined;
+        this.fertilizerFEdrops = undefined;
+        this.liquidHumin = false;
+        this.mironekuton = false;
+        this.bacterAE = false;
+        this.niteOut2 = false;
+        this.notes = undefined;
     }
 
 

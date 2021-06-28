@@ -7,19 +7,28 @@
 
 <ion-content>
 
-    <ion-list *ngFor="let tank of tanksList">
+    <ion-list *ngFor="let entry of allMaintenanceList">
         <ion-list-header>
-            {{tank.tankName}}
+            {{entry.tankName}}
         </ion-list-header>
 
-        <ion-item *ngFor="let entry of tank.maintenance">
+        <!-- show all maintenance entries sorted by tank and date -->
+        <ion-item >
             <ion-avatar slot="start">
                 <ion-icon name="information-circle-outline"></ion-icon>
             </ion-avatar>
             <ion-label>
-                <h2>{{entry.date}}</h2>
-                <h3>{{entry.waterChange}}</h3>
-                <p>{{entry.notes}}</p>
+                <h2>Date: {{entry.date | date: 'dd.MM.yy'}}</h2>
+                <h3 *ngIf="entry.waterChange">Water Change: {{entry.waterChange}}%</h3>
+                <h3 *ngIf="entry.fertilizerNPKml">Fertilizer NPK: {{entry.fertilizerNPKml}} ml</h3>
+                <h3 *ngIf="entry.fertilizerNPKdrops">Fertilizer NPK: {{entry.fertilizerNPKdrops}} drops</h3>
+                <h3 *ngIf="entry.fertilizerFEml">Fertilizer Fe: {{entry.fertilizerFEml}} ml</h3>
+                <h3 *ngIf="entry.fertilizerFEdrops">Fertilizer Fe: {{entry.fertilizerFEdrops}} drops</h3>
+                <h3 *ngIf="entry.liquidHumin">Liquid Humin</h3>
+                <h3 *ngIf="entry.mironekuton">Mironekuton</h3>
+                <h3 *ngIf="entry.bacterAE">BacterAE</h3>
+                <h3 *ngIf="entry.niteOut2">Nite-Out II</h3>
+                <h3 *ngIf="entry.notes" class="ion-text-wrap">Notes: {{entry.notes}}</h3>
             </ion-label>
         </ion-item>
 

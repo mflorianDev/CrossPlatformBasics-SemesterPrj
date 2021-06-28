@@ -8,7 +8,7 @@ import { AquariumsService } from '../services/aquariums.service';
     styleUrls: ['./show-all-maintenance.page.scss'],
 })
 export class ShowAllMaintenancePage implements OnInit {
-    tanksList: Aquarium[];
+    allMaintenanceList: any[];
 
     constructor(private aquariumsService: AquariumsService) {
         this.init();
@@ -17,7 +17,7 @@ export class ShowAllMaintenancePage implements OnInit {
     ngOnInit() {}
 
     private async init(){
-        this.tanksList = await this.aquariumsService.getAquariumsFromStorage();
+        this.allMaintenanceList = await this.aquariumsService.getAllMaintenanceSortedByDate();
     }
 
 

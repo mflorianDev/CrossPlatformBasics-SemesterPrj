@@ -28,9 +28,19 @@ const routes: Routes = [
     loadChildren: () => import('./show-all-maintenance/show-all-maintenance.module').then( m => m.ShowAllMaintenancePageModule)
   },
   {
+    path: 'show-water-changes',
+    loadChildren: () => import('./show-water-changes/show-water-changes.module').then( m => m.ShowWaterChangesPageModule)
+  },
+  {
+    path: 'tank-properties',
+    loadChildren: () => import('./tank-properties/tank-properties.module').then( m => m.TankPropertiesPageModule)
+  },
+  {
     path: '**',
     loadChildren: () => import('./page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
   },
+
+
 ];
 
 @NgModule({

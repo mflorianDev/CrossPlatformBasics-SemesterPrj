@@ -6,16 +6,20 @@
 </ion-header>
 
 <ion-content>
+
     <ion-list>
         <ion-row>
-            <ion-item *ngFor="let tank of tanksList">
-                <ion-label position="stacked">{{tank.tankName}}</ion-label>
-                <ion-toggle [(ngModel)]="tank.isMaintenanced"></ion-toggle>
-            </ion-item>
-            <ion-item>
-                <ion-label position="stacked">All Tanks</ion-label>
-                <ion-toggle [(ngModel)]="allTanks"></ion-toggle>
-            </ion-item>
+            <ion-col>
+                <ion-item>
+                    <ion-label>Tank Select</ion-label>
+                </ion-item>
+            </ion-col>
+            <ion-col *ngFor="let tank of tanksList">
+                <ion-item>
+                    <ion-label position="stacked">{{tank.tankName}}</ion-label>
+                    <ion-toggle [(ngModel)]="tank.isMaintenanced"></ion-toggle>
+                </ion-item>
+            </ion-col>
         </ion-row>
         <ion-item>
             <ion-label>Date</ion-label>
@@ -38,11 +42,44 @@
             </ion-select>
         </ion-item>
         <ion-item>
+            <ion-label>Fertilizer NPK [ml]</ion-label>
+            <ion-input [(ngModel)]="fertilizerNPKml" type="number" class="ion-text-end" placeholder="NPK in ml">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Fertilizer NPK [drops]</ion-label>
+            <ion-input [(ngModel)]="fertilizerNPKdrops" type="number" class="ion-text-end" placeholder="NPK in drops">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Fertilizer Fe [ml]</ion-label>
+            <ion-input [(ngModel)]="fertilizerFEml" type="number" class="ion-text-end" placeholder="NPK in ml">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Fertilizer Fe [drops]</ion-label>
+            <ion-input [(ngModel)]="fertilizerFEdrops" type="number" class="ion-text-end" placeholder="NPK in drops">
+            </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label>Mironekuton</ion-label>
+            <ion-toggle [(ngModel)]="mironekuton"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>BacterAE</ion-label>
+            <ion-toggle [(ngModel)]="bacterAE"></ion-toggle>
+        </ion-item>
+        <ion-item>
+            <ion-label>Nite-Out II</ion-label>
+            <ion-toggle [(ngModel)]="niteOut2"></ion-toggle>
+        </ion-item>
+        <ion-item>
             <ion-icon name="create-outline" slot="end" class="ion-align-self-center"></ion-icon>
             <ion-label position="floating">Notes</ion-label>
             <ion-textarea [(ngModel)]="notes" placeholder="Enter Your Notes Here"></ion-textarea>
         </ion-item>
     </ion-list>
+
 
     <ion-button (click)="onSave()" class="ion-padding-vertical">Save</ion-button>
 

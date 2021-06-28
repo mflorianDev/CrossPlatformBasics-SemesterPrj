@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>tankProperties</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+        <ion-item>
+            <ion-label>Select Tank</ion-label>
+            <ion-select [compareWith]="compareWith" [(ngModel)]="selectedTankObj" (ionChange)="presentModal(selectedTankObj)" okText="Okay" cancelText="Dismiss">
+                <ion-select-option *ngFor="let tank of tanksList" [value]="tank">{{tank.tankName}}</ion-select-option>
+            </ion-select>
+        </ion-item>
+    </ion-grid>
+
+</ion-content>
