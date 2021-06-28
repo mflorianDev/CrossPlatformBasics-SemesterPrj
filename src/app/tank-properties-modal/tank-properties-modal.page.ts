@@ -1,6 +1,7 @@
-import { Time } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
 import { Aquarium } from '../aquarium/aquarium';
+import { IAquariumProperties } from '../aquarium/aquariumPropertiesInterface';
 import { AquariumsService } from '../services/aquariums.service';
 
 @Component({
@@ -9,17 +10,9 @@ import { AquariumsService } from '../services/aquariums.service';
     styleUrls: ['./tank-properties-modal.page.scss'],
 })
 export class TankPropertiesModalPage implements OnInit {
-    @Input() selectedTankObj: Record<string, any>;
-
-    tankName: string;
-    length: number;
-    width: number;
-    height: number;
-    manufacturer: string;
+    @Input() selectedTankObj: Aquarium;
+    props: IAquariumProperties;
     lamp: string;
-    lightingDuration: Time;
-    co2Injection: boolean;
-    airStone: boolean;
 
     isDisabledTankName = true;
     isDisabledLength = true;
@@ -31,40 +24,34 @@ export class TankPropertiesModalPage implements OnInit {
     isDisabledCo2Injection = true;
     isDisabledAirStone = true;
 
-    constructor(private aquariumsService: AquariumsService) {
+    constructor(private aquariumsService: AquariumsService, public modalController: ModalController) {
     }
 
     ngOnInit() {
-        console.log('Modal Input tankObj: ', this.selectedTankObj);
-        this.tankName = this.selectedTankObj.tankName;
-        this.length = this.selectedTankObj.length;
-        this.width = this.selectedTankObj.width;
-        this.height = this.selectedTankObj.height;
-        this.manufacturer = this.selectedTankObj.manufacturer;
-        this.lamp = this.selectedTankObj.lamp;
-        this.lightingDuration = this.selectedTankObj.lightingDuration;
-        this.co2Injection = this.selectedTankObj.co2Injection;
-        this.airStone = this.selectedTankObj.airStone;
+        this.props = this.selectedTankObj.properties;
+        this.lamp = this.selectedTankObj.properties.lamp;
     }
 
-    public onCreate() {
-        if (this.tankName !== '') {
-            this.aquariumsService.addAquariumToStorage({
-                tankName: this.tankName,
-                length: this.length,
-                width: this.width,
-                height: this.height,
-                manufacturer: this.manufacturer,
-                lamp: this.lamp,
-                lightingDuration: this.lightingDuration,
-                co2Injection: this.co2Injection,
-                airStone: this.airStone,
-            });
+    public onUpdate() {
+        console.log('new lamp-value: ', this.lamp);
+        console.log('New Props: ', this.props);
+        if (this.selectedTankObj.tankName !== '') {
+            this.selectedTankObj.properties = this.props;
+            this.selectedTankObj.properties.volume = (this.props.length*this.props.width*this.props.height)/1000;
+            console.log('Tank to Update: ', this.selectedTankObj);
+            this.aquariumsService.updateAquariumsInStorage(this.selectedTankObj);
+            this.dismiss();
             //TODO: toast im Service oder hier?
         } else {
             //TODO: Ion-Alert-Komponente einbauen!
             alert('Name must be set!');
         }
+    }
+
+    public dismiss(){
+        this.modalController.dismiss({
+            dismissed: true
+        });
     }
 
 

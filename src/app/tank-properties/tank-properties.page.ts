@@ -10,14 +10,14 @@ import { TankPropertiesModalPage } from '../tank-properties-modal/tank-propertie
     styleUrls: ['./tank-properties.page.scss'],
 })
 export class TankPropertiesPage implements OnInit {
-    tanksList: any[];
+    tanksList: Aquarium[];
     selectedTankObj: Aquarium;
 
     constructor(private aquariumsService: AquariumsService, public modalController: ModalController) {
-        this.getDataFromStorage();
     }
 
     ngOnInit() {
+        this.getDataFromStorage();
     }
 
     public compareWith(o1: any, o2: any) {
@@ -36,7 +36,7 @@ export class TankPropertiesPage implements OnInit {
 
 
     private async getDataFromStorage(): Promise<void> {
-        this.tanksList = await this.aquariumsService.getAquariumNamesAndPropertiesFromStorage();
+        this.tanksList = await this.aquariumsService.getAquariumsFromStorage();
     }
 
 }

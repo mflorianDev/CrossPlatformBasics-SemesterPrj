@@ -1,24 +1,37 @@
+import { Time } from '@angular/common';
 import { IAquarium } from './aquariumInterface';
+import { IAquariumProperties } from './aquariumPropertiesInterface';
 
-export class Aquarium {
+export class Aquarium implements IAquarium {
     public tankName: string;
-    public properties: Record<string, unknown>;
-    public maintenance: Record<string, unknown>[];
+    public properties: IAquariumProperties;
+    public maintenance: Record<string, any>[];
 
-    constructor(data: IAquarium) {
-        this.tankName = data.tankName;
+    constructor(
+        tankName: string,
+        length: number,
+        width: number,
+        height: number,
+        manufacturer: string,
+        lamp: string,
+        lightingDuration: Time,
+        co2Injection: boolean,
+        airStone: boolean,
+        maintenance: Record<string, any>[] = []
+        ) {
+        this.tankName = tankName;
         this.properties = {
-            length: data.length,
-            width: data.width,
-            height: data.height,
-            volume: (data.length*data.width*data.height)/1000,
-            manufacturer: data.manufacturer,
-            lamp: data.lamp,
-            lightingDuration: data.lightingDuration,
-            co2Injection: data.co2Injection,
-            airStone: data.airStone,
+            length,
+            width,
+            height,
+            volume: length*height*width/1000,
+            manufacturer,
+            lamp,
+            lightingDuration,
+            co2Injection,
+            airStone,
         };
-        this.maintenance = [];
+        this.maintenance = maintenance;
     }
 
 }

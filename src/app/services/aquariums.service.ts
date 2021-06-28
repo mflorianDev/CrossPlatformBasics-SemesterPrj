@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Aquarium } from '../aquarium/aquarium';
-import { IAquarium } from '../aquarium/aquariumInterface';
+import { IAquariumProperties } from '../aquarium/aquariumPropertiesInterface';
 import { Storage } from '@ionic/storage';
 import { IMaintenance } from '../maintenance/maintenanceInterface';
 import { ToastController } from '@ionic/angular';
@@ -16,8 +16,7 @@ export class AquariumsService {
         this.init();
     }
 
-    public async addAquariumToStorage(data: IAquarium): Promise<void> {
-        const newAquarium = new Aquarium(data);
+    public async addAquariumToStorage(newAquarium: Aquarium): Promise<void> {
         try {
             await this.storage.get(AQUARIUMS_KEY)
                 .then((aquariums: Aquarium[]) => {
@@ -39,6 +38,29 @@ export class AquariumsService {
             return await this.storage.get(AQUARIUMS_KEY);
         } catch (error) {
             console.log('Storage-Get-Error: ', error);
+        }
+    }
+
+    public async updateAquariumsInStorage(tank: Aquarium): Promise<void>{
+        try {
+            await this.storage.get(AQUARIUMS_KEY)
+                .then((aquariums: Aquarium[]) => {
+                    if (!aquariums) {
+                        return null;
+                    }
+                    const newAquariumList: Aquarium[] = [];
+                    for (const aquarium of aquariums) {
+                        if(aquarium.tankName === tank.tankName){
+                            newAquariumList.push(tank);
+                        } else {
+                            newAquariumList.push(aquarium);
+                        }
+                    }
+                    this.storage.set(AQUARIUMS_KEY, newAquariumList);
+                });
+            this.showToast('Aquarium ' + tank.tankName + ' updated!');
+        } catch (error) {
+            console.log('Storage-Update-Error: ', error);
         }
     }
 

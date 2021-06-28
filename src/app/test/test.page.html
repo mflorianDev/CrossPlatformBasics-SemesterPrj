@@ -1,0 +1,14 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>test</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-item>
+        <ion-label>myVal:</ion-label>
+        <ion-input [(ngModel)]="myVal.text" type="text" placeholder="{{myVal.text ? myVal.text : 'Enter Text'}}"></ion-input>
+        <ion-button (click)="showMyVal()">show myVal</ion-button>
+    </ion-item>
+
+</ion-content>

@@ -1,13 +1,7 @@
-import { Time } from '@angular/common';
+import { IAquariumProperties } from './aquariumPropertiesInterface';
 
-export interface IAquarium {
+export interface IAquarium{
     tankName: string;
-    length: number;
-    width: number;
-    height: number;
-    manufacturer: string;
-    lamp: string;
-    lightingDuration: Time;
-    co2Injection: boolean;
-    airStone: boolean;
+    properties: IAquariumProperties;
+    maintenance: Record<string, any>[];
 }

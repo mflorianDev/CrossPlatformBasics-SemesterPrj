@@ -7,12 +7,18 @@
 <ion-content>
 
     <ion-grid>
-        <ion-item>
-            <ion-label>Select Tank</ion-label>
-            <ion-select [compareWith]="compareWith" [(ngModel)]="selectedTankObj" (ionChange)="presentModal(selectedTankObj)" okText="Okay" cancelText="Dismiss">
-                <ion-select-option *ngFor="let tank of tanksList" [value]="tank">{{tank.tankName}}</ion-select-option>
-            </ion-select>
-        </ion-item>
+        <ion-row class="ion-align-items-center">
+            <ion-col class="ion-align-self-center">
+                <ion-item>
+                    <ion-label>Select Tank</ion-label>
+                    <ion-select [compareWith]="compareWith" [(ngModel)]="selectedTankObj"
+                        (ionChange)="presentModal(selectedTankObj)" okText="Okay" cancelText="Dismiss">
+                        <ion-select-option *ngFor="let tank of tanksList" [value]="tank">{{tank.tankName}}
+                        </ion-select-option>
+                    </ion-select>
+                </ion-item>
+            </ion-col>
+        </ion-row>
     </ion-grid>
 
 </ion-content>

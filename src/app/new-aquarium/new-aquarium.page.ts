@@ -2,6 +2,7 @@ import { Time } from '@angular/common';
 import { isNgTemplate } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { AquariumsService } from '../services/aquariums.service';
+import { Aquarium } from '../aquarium/aquarium';
 
 @Component({
     selector: 'app-new-aquarium',
@@ -26,17 +27,17 @@ export class NewAquariumPage implements OnInit {
 
     public onCreate() {
         if (this.tankName !== '') {
-            this.aquariumsService.addAquariumToStorage({
-                tankName: this.tankName,
-                length: this.length,
-                width: this.width,
-                height: this.height,
-                manufacturer: this.manufacturer,
-                lamp: this.lamp,
-                lightingDuration: this.lightingDuration,
-                co2Injection: this.co2Injection,
-                airStone: this.airStone,
-            });
+            const newAquarium = new Aquarium(
+                this.tankName,
+                this.length,
+                this.width,
+                this.height,
+                this.manufacturer,
+                this.lamp,
+                this.lightingDuration,
+                this.co2Injection,
+                this.airStone,);
+            this.aquariumsService.addAquariumToStorage(newAquarium);
             //TODO: toast im Service oder hier?
             this.resetInputFields();
         } else {

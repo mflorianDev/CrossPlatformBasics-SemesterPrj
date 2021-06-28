@@ -9,3 +9,5 @@ Bei Page: Fehler aus dem Storage durchreichen?
 
 - Wenn nicht alle Storage-Werte zu einem Eintrag benötigt werden: Storage response aufarbeiten und 
 nur notwendiges weiterreichen oder alles weiterreichen? Bsp: "Show Maintenance" und "Show Water Changes".
+
+- "Tank Properties" grid mit row center und col center funktioniert nicht?!

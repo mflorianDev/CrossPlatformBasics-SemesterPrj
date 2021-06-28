@@ -35,10 +35,16 @@ const routes: Routes = [
     path: 'tank-properties',
     loadChildren: () => import('./tank-properties/tank-properties.module').then( m => m.TankPropertiesPageModule)
   },
+  //TODO: Komponente page 'test' löschen
+  {
+    path: 'test',
+    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
+  },
   {
     path: '**',
     loadChildren: () => import('./page-not-found/page-not-found.module').then( m => m.PageNotFoundPageModule)
   },
+
 
 
 ];
