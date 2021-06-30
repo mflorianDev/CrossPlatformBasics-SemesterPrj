@@ -10,7 +10,7 @@
         <ion-row class="ion-align-items-center">
             <ion-col class="ion-align-self-center">
                 <ion-item>
-                    <ion-label>Select Tank</ion-label>
+                    <ion-label>Tank</ion-label>
                     <ion-select [compareWith]="compareWith" [(ngModel)]="selectedTankObj"
                         (ionChange)="navigateToPropChanges(selectedTankObj)" okText="Okay" cancelText="Dismiss" placeholder="Tank">
                         <ion-select-option *ngFor="let tank of tanksList" [value]="tank">{{tank.tankName}}
