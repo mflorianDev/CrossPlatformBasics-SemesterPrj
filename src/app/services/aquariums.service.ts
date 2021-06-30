@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Aquarium } from '../aquarium/aquarium';
-import { IAquariumProperties } from '../aquarium/aquariumPropertiesInterface';
 import { Storage } from '@ionic/storage';
-import { IMaintenance } from '../maintenance/maintenanceInterface';
 import { ToastController } from '@ionic/angular';
 
 const AQUARIUMS_KEY = 'aquariums';
@@ -41,7 +39,7 @@ export class AquariumsService {
         }
     }
 
-    public async updateAquariumsInStorage(tank: Aquarium): Promise<void>{
+    public async updateAquariumsInStorage(tank: Aquarium): Promise<void> {
         try {
             await this.storage.get(AQUARIUMS_KEY)
                 .then((aquariums: Aquarium[]) => {
@@ -50,7 +48,7 @@ export class AquariumsService {
                     }
                     const newAquariumList: Aquarium[] = [];
                     for (const aquarium of aquariums) {
-                        if(aquarium.tankName === tank.tankName){
+                        if (aquarium.tankName === tank.tankName) {
                             newAquariumList.push(tank);
                         } else {
                             newAquariumList.push(aquarium);
@@ -64,16 +62,9 @@ export class AquariumsService {
         }
     }
 
-    public async addMaintenanceForAquariumToStorage(data: IMaintenance): Promise<void> {
+    public async addMaintenanceToStorage(aquariums: Aquarium[]): Promise<void> {
         try {
-            const aquariumList = await this.getAquariumsFromStorage();
-            aquariumList.forEach(tank => {
-                if (tank.tankName === data.tankName) {
-                    tank.maintenance.push(data.maintenance);
-                }
-            });
-            console.log(aquariumList);
-            this.storage.set(AQUARIUMS_KEY, aquariumList);
+            this.storage.set(AQUARIUMS_KEY, aquariums);
             this.showToast('Maintenance added!');
         } catch (error) {
             console.log('Storage-Get-Error: ', error);
@@ -113,8 +104,8 @@ export class AquariumsService {
             aquariums.forEach(tank => {
                 const newMaintenanceList = [];
                 tank.maintenance.forEach(entry => {
-                    if(entry.waterChange !== undefined) {
-                        newMaintenanceList.push({waterChange: entry.waterChange, date: entry.date});
+                    if (entry.waterChange !== undefined) {
+                        newMaintenanceList.push({ waterChange: entry.waterChange, date: entry.date });
                     }
                 });
                 tank.maintenance = newMaintenanceList;
@@ -126,9 +117,9 @@ export class AquariumsService {
                 });
             });
             // delete aquariums with empty maintenance-array
-            for (let i=0; i<aquariums.length; i++){
-                if(aquariums[i].maintenance.length === 0){
-                    aquariums.splice(i,1);
+            for (let i = 0; i < aquariums.length; i++) {
+                if (aquariums[i].maintenance.length === 0) {
+                    aquariums.splice(i, 1);
                 }
             }
             return aquariums;

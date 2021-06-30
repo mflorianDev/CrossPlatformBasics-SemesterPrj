@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { Aquarium } from '../aquarium/aquarium';
 import { AquariumsService } from '../services/aquariums.service';
-import { TankPropertiesModalPage } from '../tank-properties-modal/tank-properties-modal.page';
 
 @Component({
     selector: 'app-tank-properties',
@@ -23,16 +22,6 @@ export class TankPropertiesPage implements OnInit {
 
     public compareWith(o1: any, o2: any) {
         return o1 && o2 ? o1.tankName === o2.tankName : o1 === o2;
-    }
-
-    public async presentModal(selectedTankObj: Aquarium) {
-        console.log('Param: ', selectedTankObj);
-        const modal = await this.modalController.create({
-            component: TankPropertiesModalPage,
-            cssClass: 'my-custom-class',
-            componentProps: {selectedTankObj},
-        });
-        return await modal.present();
     }
 
     public navigateToPropChanges(selectedTankObj: Aquarium){
