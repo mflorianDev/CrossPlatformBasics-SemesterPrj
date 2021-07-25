@@ -1,9 +1,10 @@
-# CrossplattformBasics-SemesterPrj
-AquaApp zur Verwaltung von Aquarien. Typescript, Ionic-Framework, Angular-Framework.
+# Cross Platform Basics - Semesterprojekt
+*AquaApp* zur Verwaltung von Aquarien. Typescript, Ionic-Framework, Angular-Framework.
 
-ZIELE DER LEHRVERANSTALTUNG:
+### Ziele der Lehrveranstaltung:
 Im Rahmen des Semesterprojektes ist eine Webanwendung zu entwickeln, welche:
-  - auf das Ionic-Framework aufbaut
+  - auf das **Ionic-Framework** aufbaut
+  - auf das **Angular-Framework** aufsetzt
   - Daten im Ionic Storage speichert
   - responsiv funktioniert (Handy sowie auch Desktop)
   - im Browser aufgerufen werden kann (native App kommt im 3. Semester)
