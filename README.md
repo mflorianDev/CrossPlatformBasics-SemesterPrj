@@ -2,7 +2,7 @@
 *AquaApp* zur Verwaltung von Aquarien.
 
 Tech Stack:
-Typescript, CSS, HTML, Ionic-Framework, Angular-Framework.
+Typescript, SCSS, HTML, Ionic-Framework, Angular-Framework.
 
 ### Ziele der Lehrveranstaltung:
 Im Rahmen des Semesterprojektes ist eine Webanwendung zu entwickeln, welche:
