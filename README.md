@@ -1,5 +1,5 @@
 # Cross Platform Basics - Semesterprojekt
-*AquaApp* zur Verwaltung von Aquarien.
+*AquaApp* zur Verwaltung von Aquarien. (siehe auch Datei ***AquaApp - Präsentation.pdf***)
 
 Tech Stack:
 Typescript, SCSS, HTML, Ionic-Framework, Angular-Framework.
@@ -16,7 +16,6 @@ Im Rahmen des Semesterprojektes ist eine Webanwendung zu entwickeln, welche:
 
 ### Idee und Konzept:
 Um dem eigenen *Need* einer Aquariumverwaltungsapp nachzukommen war die Idee eine einfache App zu entwickeln welche die grundlegensten Anforderungen erfüllt.
-(siehe auch Datei ***AquaApp - Präsentation.pdf***)
 
 Anforderungen:
   - neue Aquarien anlegen
